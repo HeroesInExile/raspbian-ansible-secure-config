@@ -1,4 +1,4 @@
-# raspbian-ansible-secure-config
+# Raspbian-Ansible-Secure-Config
 Ansible Hardened Configurations for Raspbian PI3
 
 # Goal
