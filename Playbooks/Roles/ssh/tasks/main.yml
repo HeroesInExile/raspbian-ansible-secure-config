@@ -76,11 +76,25 @@
 - name: Confirm host connection works
   ping:
 
+- name: Restrict root SSH logins
+      lineinfile:
+      dest: /etc/ssh/sshd_config
+      state: present
+      regexp: '^#PermitRootLogin'
+      line: 'PermitRootLogin no'
+
+- name: Restrict SSH logins to keys only
+      lineinfile:
+      dest: /etc/ssh/sshd_config
+      state: present
+      regexp: '^#PasswordAuthentication'
+      line: 'PasswordAuthentication no' 
+      
 - name: Setup alternate SSH port
   lineinfile:
-    dest: "/etc/ssh/sshd_config"
-    regexp: "^Port"
-    line: "Port {{ configured_port }}"
+  dest: "/etc/ssh/sshd_config"
+  regexp: "^Port"
+  line: "Port {{ configured_port }}"
   notify: "Restart sshd"
 
 - name: Setup selinux for alternate SSH port
