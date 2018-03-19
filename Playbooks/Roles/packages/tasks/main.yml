@@ -1,3 +1,4 @@
+---
 - name: Upgrading all packages (Ubuntu/Debian)
   apt:
     upgrade: dist
